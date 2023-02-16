@@ -13,6 +13,7 @@ public class PuzzleCard : MonoBehaviour
     public bool setToTarget = false;
     private void Start()
     {
+        state = State.Closed;
 
         rectTransform = GetComponent<RectTransform>();
         puzzle_manager = GameObject.Find("Match Puzzle Manager").GetComponent<MatchPuzzle_Manager>();
@@ -22,6 +23,13 @@ public class PuzzleCard : MonoBehaviour
 
 
     }
+
+    public enum State
+    {
+        Closing, Closed, Opening, Opened, Matched, notMatched
+    }
+    public State state;
+
 
     private void Update()
     {
@@ -36,7 +44,37 @@ public class PuzzleCard : MonoBehaviour
                 setToTarget = false;
             }
         }
-        
+
+        switch (state)
+        {
+            case State.Closing:
+                PlayCloseAnimation();
+                break;
+            case State.Closed:
+                break;
+            case State.Opening:
+                PlayOpenAnimation();
+                break;
+            case State.Opened:
+                break;
+            case State.Matched:
+                break;
+            case State.notMatched:
+                break;
+            default:
+                break;
+        }
     }
 
+    void PlayCloseAnimation()
+    {
+        GetComponent<Animator>().SetBool("chosen", false);
+        GetComponent<Animator>().SetBool("wrong", true);
+        state = State.Closed;
+    }
+    void PlayOpenAnimation()
+    {
+        GetComponent<Animator>().SetBool("chosen", true);
+        state = State.Opened;
+    }
 }
