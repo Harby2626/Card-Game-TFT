@@ -14,7 +14,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
     [SerializeField] AllPuzzleCards_SO AllPuzzleCards;
     public List<GameObject> AvailableCardSlots = new List<GameObject>();
     public List<GameObject> CardsOnPuzzle = new List<GameObject>();
-    [SerializeField] int MoveAmount;
+    public int MoveAmount;
     GameObject cardSpawnPos;
 
     // This is a list for checking current match checking
@@ -74,7 +74,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
                 thisCardGO.GetComponent<PuzzleCard>().state = PuzzleCard.State.Opening;
                 thisCardGO.GetComponent<Animator>().SetBool("chosen", true);
             }
-
+            
             StartCoroutine(HandleMatch());
 
         }

@@ -40,23 +40,6 @@ public class DealingCardManager : MonoBehaviour
     private void Update()
     {
         StartCoroutine(DealCards());
-        //if (puzzleMng.AvailableCardSlots.Count > 0)
-        //{
-
-        //    timer += Time.deltaTime;
-        //    if (timer > card_deal_wait)
-        //    {
-        //        int randVal = Random.Range(0, puzzleMng.AvailableCardSlots.Count);
-        //        DealCard(counter, randVal);
-        //        counter++;
-        //        if (counter == puzzleMng.CardsOnPuzzle.Count)
-        //        {
-        //            puzzleMng.puzzlePhase = MatchPuzzle_Manager.PuzzlePhase.Playing;
-        //            puzzleMng.ActivateCardButtons();
-        //        }
-        //        timer = 0f;
-        //    }
-        //}
 
     }
 
