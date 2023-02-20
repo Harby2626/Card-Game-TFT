@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyWave
 {
     public List<Spawnable> spawnables;
+    [HideInInspector]
     public List<EnemyCharacter> aliveEnemyCharacters;
 
     public void SpawnEnemies()
@@ -12,7 +13,7 @@ public class EnemyWave
         for (int i = 0; i < spawnables.Count; i++)
         {
             EnemyCharacter newEnemy = GameObject
-                .Instantiate(spawnables[i].character, spawnables[i].transform.position, Quaternion.identity)
+                .Instantiate(spawnables[i].spawn, spawnables[i].location.position, Quaternion.identity)
                 .GetComponent<EnemyCharacter>();
             aliveEnemyCharacters.Add(newEnemy);
         }

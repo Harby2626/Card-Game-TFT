@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// ! DIDN'T TESTED YET
 class Character_Manager : MonoBehaviour
 {
     // * Singleton
@@ -13,14 +12,13 @@ class Character_Manager : MonoBehaviour
             ? (instance = FindObjectOfType<Character_Manager>())
             : instance;
     }
-    public List<PlayerCharacter> playerCharacters;
+    public List<PlayerCharacter> playerCharacters { get; private set; }
     public List<EnemyWave> enemyWaves;
     public List<EnemyCharacter> aliveEnemyCharacters { get => enemyWaves[currentWaveIndex].aliveEnemyCharacters; }
-    private int currentWaveIndex;
-
+    private int currentWaveIndex = -1;
     void Start()
     {
-        currentWaveIndex = 0;
+        currentWaveIndex = -1;
         SpawnWave();
     }
     public Character RequestTarget(CharacterType ownerType)
@@ -60,7 +58,6 @@ class Character_Manager : MonoBehaviour
         }
         return target;
     }
-
     private bool FindTargetStretegy(Character target, Character character)
     {
         // ! the strategy is to find target is finding the lowest health
@@ -73,23 +70,29 @@ class Character_Manager : MonoBehaviour
         // todo add delay
         /** 
         * * This initiates new wave
+        * * increments wave index for next round
         * * If wave index exceeds or equals to wave count
         * * then it means that game ended
         * * if not then continue initiating the wave 
         * * by spawnşig the enemies in new wave
-        * * then increments wave index for next round
         */
+        currentWaveIndex++;
         if (currentWaveIndex >= enemyWaves.Count)
         {
+            Debug.Log("Game End");
             return;
         }
+        Debug.Log("Spawn Wave");
 
         enemyWaves[currentWaveIndex].SpawnEnemies();
 
-        currentWaveIndex++;
     }
-
-    public void CheckWaveEnded()
+    public void RemoveEnemy(EnemyCharacter enemy)
+    {
+        aliveEnemyCharacters.Remove(enemy);
+        CheckWaveEnded();
+    }
+    private void CheckWaveEnded()
     {
         /** 
         * * Checking if there are any enemy characters left in this wave
@@ -100,7 +103,16 @@ class Character_Manager : MonoBehaviour
             SpawnWave();
         }
     }
-    public void DidPlayerFailed()
+    public void AddPlayerCharacter(PlayerCharacter playerCharacter)
+    {
+        playerCharacters.Add(playerCharacter);
+    }
+    public void RemovePlayer(PlayerCharacter player)
+    {
+        playerCharacters.Remove(player);
+        CheckPlayerFailed();
+    }
+    private void CheckPlayerFailed()
     {
         /** 
         * * Checking if there are any player characters left
