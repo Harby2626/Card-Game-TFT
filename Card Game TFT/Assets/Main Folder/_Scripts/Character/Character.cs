@@ -25,10 +25,8 @@ public abstract class Character : MonoBehaviour
             if (CanAttack(characterObject.attackCooldown))
                 Attack();
             else
-            {
                 ChaseTarget();
-            }
-                
+
         }
     }
     public void RequestTarget()

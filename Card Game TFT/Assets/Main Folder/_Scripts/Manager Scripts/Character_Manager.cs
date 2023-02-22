@@ -107,6 +107,7 @@ class Character_Manager : MonoBehaviour
     {
         if (playerCharacters == null)
             playerCharacters = new List<PlayerCharacter>();
+
         playerCharacters.Add(playerCharacter);
     }
     public void RemovePlayer(PlayerCharacter player)
