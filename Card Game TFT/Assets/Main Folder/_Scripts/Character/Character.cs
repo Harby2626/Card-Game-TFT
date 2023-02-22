@@ -26,6 +26,7 @@ public abstract class Character : MonoBehaviour
                 Attack();
             else
                 ChaseTarget();
+
         }
     }
     public void RequestTarget()

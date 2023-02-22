@@ -27,7 +27,7 @@ class Character_Manager : MonoBehaviour
         * * This function will be called in 'Character' class
         * * finds target that Character requested
         */
-        if (aliveEnemyCharacters.Count == 0) return null;
+        if (aliveEnemyCharacters.Count == 0 || playerCharacters.Count == 0) return null;
         Character target = null;
         if (ownerType == CharacterType.NONE) return null;
         else if (ownerType == CharacterType.PLAYER)
@@ -105,6 +105,9 @@ class Character_Manager : MonoBehaviour
     }
     public void AddPlayerCharacter(PlayerCharacter playerCharacter)
     {
+        if (playerCharacters == null)
+            playerCharacters = new List<PlayerCharacter>();
+
         playerCharacters.Add(playerCharacter);
     }
     public void RemovePlayer(PlayerCharacter player)
