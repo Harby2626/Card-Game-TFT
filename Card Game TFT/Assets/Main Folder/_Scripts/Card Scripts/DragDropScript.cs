@@ -44,6 +44,7 @@ public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             if (Physics.Raycast(ray, out hit, 9999.9f))
             {
                 currentFighter = Instantiate(cardFighterObj, hit.point, hit.transform.rotation);
+                Character_Manager.Instance.AddPlayerCharacter(currentFighter.GetComponent<PlayerCharacter>());
             }
         }
         
@@ -72,7 +73,8 @@ public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         card_animator.SetBool("dragBegin", false);
         cardIMG.color = baseColor;
         transform.SetParent(parentAfterDrag);
-        
+
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 99999.9f, mask))
         {

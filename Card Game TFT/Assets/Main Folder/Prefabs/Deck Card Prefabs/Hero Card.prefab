@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156980272821814382}
-  m_LocalRotation: {x: -0, y: 0.00000012356631, z: 5.665193e-10, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -89,5 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1e3b36507b8a24ab13a6976f9300b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardIMG: {fileID: 156980272821814381}
+  cardFighterObj: {fileID: 4961515360615946380, guid: 3b97ccb6aea570c4ab154907bb748698,
+    type: 3}
   dragColor: {r: 0.39215687, g: 0.6862745, b: 0.7058824, a: 0.23529412}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
