@@ -39,7 +39,10 @@ public class DealingCardManager : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(DealCards());
+        if (puzzleMng.AvailableCardSlots.Count > 0)
+        {
+            StartCoroutine(DealCards());
+        }
 
     }
 
