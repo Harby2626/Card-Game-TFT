@@ -8,26 +8,30 @@ using UnityEngine.UI;
 
 public class MatchPuzzle_Manager : MonoBehaviour
 {
-    //float timer = 0f, closeWaitTime = 1f;
+    public bool puzzle_ended = false;
 
+    Animator puzzle_animator;
 
     [SerializeField] AllPuzzleCards_SO AllPuzzleCards;
     public List<GameObject> AvailableCardSlots = new List<GameObject>();
     public List<GameObject> CardsOnPuzzle = new List<GameObject>();
     public int MoveAmount;
-    GameObject cardSpawnPos;
+    GameObject cardSpawnPos; [SerializeField] GameObject FightButton;
 
     // This is a list for checking current match checking
     List<GameObject> ChosenCards = new List<GameObject>();
 
     public enum PuzzlePhase
     {
-        Card_Dealing, Halt, Playing
+        Card_Dealing, Halt, Playing, Ended
     }
     public PuzzlePhase puzzlePhase;
 
     private void Start()
     {
+        puzzle_animator = GameObject.Find("Puzzle Background").GetComponent<Animator>();
+
+
         cardSpawnPos = GameObject.Find("CardSpawnPoint");
         GetAvailableSlots();
 
@@ -37,13 +41,15 @@ public class MatchPuzzle_Manager : MonoBehaviour
 
     IEnumerator HandleMatch()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         if(ChosenCards.Count == 2)
         {
             MoveAmount--;
             if (ChosenCards[0].GetComponent<PuzzleCard>().Card.cardType == ChosenCards[1].GetComponent<PuzzleCard>().Card.cardType)// When cards matches
             {
                 DeactivateCardButtons();
+                CardsOnPuzzle.Remove(ChosenCards[0]); CardsOnPuzzle.Remove(ChosenCards[1]);
+                MoveTrueCard(ChosenCards[0]); MoveTrueCard(ChosenCards[1]);
                 ChosenCards.Clear();
                 ActivateCardButtons();
                 Debug.Log("MATCH!");
@@ -59,6 +65,12 @@ public class MatchPuzzle_Manager : MonoBehaviour
                 Debug.Log("TRY AGAIN");
             }
         }
+    }
+    IEnumerator StartFightingPhase()
+    {
+        yield return new WaitForSeconds(2.5f);
+        puzzlePhase = PuzzlePhase.Ended;
+        FightButton.SetActive(true);
     }
 
 
@@ -84,6 +96,14 @@ public class MatchPuzzle_Manager : MonoBehaviour
     private void Update()
     {
 
+        if (MoveAmount == 0 && !puzzle_ended)// When puzzle phase ended
+        {
+            puzzle_ended = true;
+            puzzle_animator.SetBool("puzzle_end", true);
+            StartCoroutine(StartFightingPhase());
+        }
+
+
         switch (puzzlePhase)
         {
             case PuzzlePhase.Card_Dealing:
@@ -92,6 +112,9 @@ public class MatchPuzzle_Manager : MonoBehaviour
                 break;
             case PuzzlePhase.Playing:
                 //Playing phase (time runs out 15s (?))
+                break;
+            case PuzzlePhase.Ended:
+
                 break;
             default:
                 break;
@@ -106,7 +129,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
             AvailableCardSlots.Add(item);
         }
     }
-    void SpawnCards()// This function spawns a set of cards to out of borders. || To be lerped to their positions ||
+    void SpawnCards()// This function spawns a set of cards to specific position || To be lerped to their positions ||
     {
 
         for (int i = 0; i < AvailableCardSlots.Count/2; i++)
@@ -125,13 +148,8 @@ public class MatchPuzzle_Manager : MonoBehaviour
         }
 
     }
-    void HandleMatching()
-    {
 
-    }
-
-
-    public void ActivateCardButtons()
+    public void ActivateCardButtons()// This function activates Button components of Cards
     {
         foreach (GameObject item in CardsOnPuzzle)
         {
@@ -139,7 +157,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
         }
     }
 
-    public void DeactivateCardButtons()
+    public void DeactivateCardButtons()// This function deactivates Button components of Cards
     {
         foreach (GameObject item in CardsOnPuzzle)
         {
@@ -147,10 +165,17 @@ public class MatchPuzzle_Manager : MonoBehaviour
         }
     }
 
-    void CloseCard(GameObject card)
+    void CloseCard(GameObject card)// This function makes card play closing animation
     {
         card.GetComponent<Animator>().SetBool("chosen", false);
         card.GetComponent<Animator>().SetBool("wrong", true);
     }
 
+    void MoveTrueCard(GameObject card)// This function makes matched cards to be lerped trough specific position
+    {
+        card.GetComponent<PuzzleCard>().CardTrueMatchTarget = GameObject.Find("TrueCardPos").GetComponent<RectTransform>().anchoredPosition;
+        card.GetComponent<PuzzleCard>().matchTargetSet = true;
+        card.GetComponent<Animator>().SetBool("correct", true);
+        card.GetComponent<PuzzleCard>().setToTarget = false;
+    }
 }

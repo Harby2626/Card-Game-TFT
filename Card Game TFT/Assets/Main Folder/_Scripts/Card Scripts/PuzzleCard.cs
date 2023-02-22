@@ -9,8 +9,8 @@ public class PuzzleCard : MonoBehaviour
     MatchPuzzle_Manager puzzle_manager;
     public PuzzleCard_SO Card;
 
-    public Vector2 CardSlotTarget;
-    public bool setToTarget = false;
+    public Vector2 CardSlotTarget, CardTrueMatchTarget;
+    public bool setToTarget = false, matchTargetSet = false;
     private void Start()
     {
         state = State.Closed;
@@ -33,7 +33,7 @@ public class PuzzleCard : MonoBehaviour
 
     private void Update()
     {
-        if (setToTarget)// if public setToTarget boolean turns true, this card lerps to its target slot
+        if (setToTarget)// if setToTarget boolean turns true, this card lerps to its target slot
         {
             if (CardSlotTarget.magnitude - rectTransform.anchoredPosition.magnitude != 0f)
             {
@@ -42,6 +42,19 @@ public class PuzzleCard : MonoBehaviour
             else if (CardSlotTarget.magnitude - rectTransform.anchoredPosition.magnitude == 0f)
             {
                 setToTarget = false;
+            }
+        }
+
+        if (matchTargetSet)// if matchTargetSet boolean turns true, this card lerps to trueMatchPoint
+        {
+            if (Vector2.Distance(CardTrueMatchTarget, rectTransform.anchoredPosition) > 50)
+            {
+                rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, CardTrueMatchTarget, 3f * Time.deltaTime);
+            }
+            else if (Vector2.Distance(CardTrueMatchTarget, rectTransform.anchoredPosition) < 50)
+            {
+                matchTargetSet = false;
+                Destroy(this.gameObject);
             }
         }
 
