@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class MatchPuzzle_Manager : MonoBehaviour
 {
-    public bool puzzle_ended = false;
+    public bool puzzle_ended = false, time_ended;
 
     Animator puzzle_animator;
 
@@ -17,13 +17,14 @@ public class MatchPuzzle_Manager : MonoBehaviour
     public List<GameObject> CardsOnPuzzle = new List<GameObject>();
     public int MoveAmount;
     GameObject cardSpawnPos; [SerializeField] GameObject FightButton;
+    [SerializeField] GameObject UD_menu;
 
     // This is a list for checking current match checking
     List<GameObject> ChosenCards = new List<GameObject>();
 
     public enum PuzzlePhase
     {
-        Card_Dealing, Halt, Playing, Ended
+        Start, Halt, Playing, Ended
     }
     public PuzzlePhase puzzlePhase;
 
@@ -35,7 +36,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
         cardSpawnPos = GameObject.Find("CardSpawnPoint");
         GetAvailableSlots();
 
-        puzzlePhase = PuzzlePhase.Card_Dealing;
+        puzzlePhase = PuzzlePhase.Start;
         MoveAmount = 8;
     }
 
@@ -68,7 +69,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
     }
     IEnumerator StartFightingPhase()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         puzzlePhase = PuzzlePhase.Ended;
         FightButton.SetActive(true);
     }
@@ -90,25 +91,44 @@ public class MatchPuzzle_Manager : MonoBehaviour
             StartCoroutine(HandleMatch());
 
         }
-        
+    }
+
+    public void OpenUD_Menu()
+    {
+
+        if (UD_menu.GetComponent<Animator>().GetBool("open") == false)
+        {
+            UD_menu.GetComponent<Animator>().SetBool("open", true);
+        }
+        else if (UD_menu.GetComponent<Animator>().GetBool("open") == true)
+        {
+            UD_menu.GetComponent<Animator>().SetBool("open", false);
+            UD_menu.GetComponent<Animator>().SetBool("close", true);
+        }
     }
 
     private void Update()
     {
-
-        if (MoveAmount == 0 && !puzzle_ended)// When puzzle phase ended
+        if (puzzlePhase == PuzzlePhase.Playing)
         {
-            puzzle_ended = true;
-            puzzle_animator.SetBool("puzzle_end", true);
-            StartCoroutine(StartFightingPhase());
+            if ((MoveAmount == 0 && !puzzle_ended) || time_ended || CardsOnPuzzle.Count == 0)// When puzzle phase ended
+            {
+                puzzle_ended = true;
+                puzzle_animator.SetBool("puzzle_end", true);
+                StartCoroutine(StartFightingPhase());
+            }
         }
+        
 
 
         switch (puzzlePhase)
         {
-            case PuzzlePhase.Card_Dealing:
+            case PuzzlePhase.Start:
                 SpawnCards();
                 puzzlePhase = PuzzlePhase.Halt;
+                break;
+            case PuzzlePhase.Halt:
+
                 break;
             case PuzzlePhase.Playing:
                 //Playing phase (time runs out 15s (?))
