@@ -21,11 +21,11 @@ public class PuzzleTimeHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(time_fill.fillAmount - 0.1f) < .01f)
+        if (Mathf.Abs(time_fill.fillAmount - 0.1f) < .01f)// Turn time_ended boolean true if time ends
         {
             puzzle_manager.time_ended = true;
         }
-        if (puzzle_manager.puzzlePhase == MatchPuzzle_Manager.PuzzlePhase.Playing)
+        if (puzzle_manager.puzzlePhase == MatchPuzzle_Manager.PuzzlePhase.Playing)// Lerp image fill_amount to 0 as long as stopping conditions true
         {
             HandleFillAmount();
         }
