@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &156980272821814382
+--- !u!1 &3481859912630533127
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 156980272821814383}
-  - component: {fileID: 156980272821814370}
-  - component: {fileID: 156980272821814381}
-  - component: {fileID: 3226685302631723456}
-  - component: {fileID: 156980272821814380}
+  - component: {fileID: 3481859912630533126}
+  - component: {fileID: 3481859912630533122}
+  - component: {fileID: 3481859912630533123}
+  - component: {fileID: 3481859912630533125}
+  - component: {fileID: 3481859912630533124}
+  - component: {fileID: 3481859912630533121}
   m_Layer: 5
-  m_Name: Hero Card
+  m_Name: UD Move Speed Upgrade Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &156980272821814383
+--- !u!224 &3481859912630533126
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156980272821814382}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 3481859912630533127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40,36 +41,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &156980272821814370
+--- !u!222 &3481859912630533122
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156980272821814382}
+  m_GameObject: {fileID: 3481859912630533127}
   m_CullTransparentMesh: 1
---- !u!114 &156980272821814381
+--- !u!114 &3481859912630533123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156980272821814382}
+  m_GameObject: {fileID: 3481859912630533127}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.41696236, g: 0.7075472, b: 0.28368637, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -78,42 +79,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &3226685302631723456
-Animator:
-  serializedVersion: 4
+--- !u!225 &3481859912630533125
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156980272821814382}
+  m_GameObject: {fileID: 3481859912630533127}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &156980272821814380
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &3481859912630533124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156980272821814382}
+  m_GameObject: {fileID: 3481859912630533127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a1e3b36507b8a24ab13a6976f9300b7, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3b6c7683be8804085a31754b20ae29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: 0
-  cardFighterObj: {fileID: 4961515360615946380, guid: 3b97ccb6aea570c4ab154907bb748698,
-    type: 3}
-  dragColor: {r: 0.39215687, g: 0.6862745, b: 0.7058824, a: 0.23529412}
-  mask:
-    serializedVersion: 2
-    m_Bits: 0
+  dropped_onCard: 0
+--- !u!114 &3481859912630533121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481859912630533127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6916a0706ce33cd488bab16c90178ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardType: {fileID: 11400000, guid: 77e841ed66a4c6840b7c25a4415bf6df, type: 2}

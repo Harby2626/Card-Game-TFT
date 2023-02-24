@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using UnityEngine.EventSystems;
 
-public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     #region Scripts
     MatchPuzzle_Manager puzzle_manager;
@@ -110,5 +110,18 @@ public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             }
         }
         
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        GameObject dropped = eventData.pointerDrag;
+        dropped.GetComponent<UDCard>().dropped_onCard = true;
+
+        if (dropped.GetComponent<UDCard>())// if dropped card is upgrade card
+        {
+            PuzzleCard_SO upgrade = dropped.GetComponent<UDCardEffect>().GetUpgradeType();
+            GetComponent<HeroCardUpgradeHandler>().AddUpgrade(upgrade);
+
+        }
     }
 }
