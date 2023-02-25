@@ -13,6 +13,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
     Animator puzzle_animator;
 
     [SerializeField] AllPuzzleCards_SO AllPuzzleCards;
+    [SerializeField] UD_DeckManager ud_manager;
     public List<GameObject> AvailableCardSlots = new List<GameObject>();
     public List<GameObject> CardsOnPuzzle = new List<GameObject>();
     public int MoveAmount;
@@ -50,6 +51,12 @@ public class MatchPuzzle_Manager : MonoBehaviour
             {
                 DeactivateCardButtons();
                 CardsOnPuzzle.Remove(ChosenCards[0]); CardsOnPuzzle.Remove(ChosenCards[1]);
+
+
+                PuzzleCard_SO puzzle_card_type = ChosenCards[0].GetComponent<PuzzleCard>().Card;
+                ud_manager.AddUpgradeCard(puzzle_card_type);
+
+
                 MoveTrueCard(ChosenCards[0]); MoveTrueCard(ChosenCards[1]);
                 ChosenCards.Clear();
                 ActivateCardButtons();
@@ -115,6 +122,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
             {
                 puzzle_ended = true;
                 puzzle_animator.SetBool("puzzle_end", true);
+                GameObject.Find("UD Card Button").GetComponent<Button>().interactable = true;
                 StartCoroutine(StartFightingPhase());
             }
         }

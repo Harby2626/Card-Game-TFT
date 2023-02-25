@@ -119,9 +119,17 @@ public class DragDropScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         if (dropped.GetComponent<UDCard>())// if dropped card is upgrade card
         {
-            PuzzleCard_SO upgrade = dropped.GetComponent<UDCardEffect>().GetUpgradeType();
-            GetComponent<HeroCardUpgradeHandler>().AddUpgrade(upgrade);
+            if (GetComponent<HeroCardUpgradeHandler>().GetActiveUpgradeCount() < GetComponent<HeroCardUpgradeHandler>().upgradeCount)
+            {
+                PuzzleCard_SO upgrade = dropped.GetComponent<UDCardEffect>().GetUpgradeType();
+                GetComponent<HeroCardUpgradeHandler>().AddUpgrade(upgrade);
+                Destroy(dropped);
+            }
 
+            else
+            {
+                dropped.GetComponent<UDCard>().ResetCard();
+            }
         }
     }
 }

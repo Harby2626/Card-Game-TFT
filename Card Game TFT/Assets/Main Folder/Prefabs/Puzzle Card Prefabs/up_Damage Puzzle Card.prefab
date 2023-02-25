@@ -167,6 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c631dedce51eee4ea64a09615f763e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card: {fileID: 11400000, guid: 2d0b08e34bc05a549a1c8701abff690b, type: 2}
+  Card: {fileID: 11400000, guid: fa807a5eeb87a9d43a57bec0adf3336f, type: 2}
   CardSlotTarget: {x: 0, y: 0}
+  CardTrueMatchTarget: {x: 0, y: 0}
   setToTarget: 0
+  matchTargetSet: 0
+  state: 0

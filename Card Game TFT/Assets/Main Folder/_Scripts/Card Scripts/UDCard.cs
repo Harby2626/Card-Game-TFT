@@ -46,7 +46,7 @@ public class UDCard : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         rect.anchoredPosition += eventData.delta;
     }
 
-    void ResetCard()
+    public void ResetCard()
     {
         Transform parent = transform.parent;
         transform.SetParent(transform.root);
