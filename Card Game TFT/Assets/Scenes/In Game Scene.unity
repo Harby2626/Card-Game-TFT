@@ -320,7 +320,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -340,7 +340,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 155484435}
   m_OnClick:
     m_PersistentCalls:
@@ -3422,7 +3422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1314258535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4201,19 +4201,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568434421}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 544381229}
   - {fileID: 176837877}
   m_Father: {fileID: 1405986558}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1000}
+  m_AnchoredPosition: {x: -800, y: -850}
   m_SizeDelta: {x: 1300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568434423
@@ -5037,6 +5037,7 @@ MonoBehaviour:
   puzzle_ended: 0
   time_ended: 0
   AllPuzzleCards: {fileID: 11400000, guid: 9bab241335d88dd4883b868639fcced9, type: 2}
+  ud_manager: {fileID: 1824842650}
   AvailableCardSlots: []
   CardsOnPuzzle: []
   MoveAmount: 0
@@ -5180,6 +5181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UD Regen Upgrade Card
       objectReference: {fileID: 0}
+    - target: {fileID: 2852154311816943040, guid: b2fe3d484591d01428eef8423648ac00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5203,7 +5209,7 @@ PrefabInstance:
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
@@ -5213,17 +5219,17 @@ PrefabInstance:
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
@@ -5263,12 +5269,12 @@ PrefabInstance:
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1148
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -142.5
       objectReference: {fileID: 0}
     - target: {fileID: 2852154311816943041, guid: b2fe3d484591d01428eef8423648ac00,
         type: 3}
@@ -5551,7 +5557,7 @@ PrefabInstance:
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
@@ -5561,17 +5567,17 @@ PrefabInstance:
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
@@ -5611,12 +5617,12 @@ PrefabInstance:
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 624
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -142.5
       objectReference: {fileID: 0}
     - target: {fileID: 3481859912630533126, guid: ff8a775928d4b9e45b460dda1d8082f7,
         type: 3}
@@ -5638,6 +5644,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UD Move Speed Upgrade Card
       objectReference: {fileID: 0}
+    - target: {fileID: 3481859912630533127, guid: ff8a775928d4b9e45b460dda1d8082f7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff8a775928d4b9e45b460dda1d8082f7, type: 3}
 --- !u!224 &4868792488182706378 stripped
@@ -5657,6 +5668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UD Attack Damage Upgrade Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124692849752217468, guid: f6eec603fe0e2b547bd6aca700c68018,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
@@ -5681,7 +5697,7 @@ PrefabInstance:
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
@@ -5691,17 +5707,17 @@ PrefabInstance:
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
@@ -5741,12 +5757,12 @@ PrefabInstance:
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -142.5
       objectReference: {fileID: 0}
     - target: {fileID: 6124692849752217471, guid: f6eec603fe0e2b547bd6aca700c68018,
         type: 3}
@@ -5777,6 +5793,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UD Hitpoint Upgrade Card
       objectReference: {fileID: 0}
+    - target: {fileID: 7038228044458576642, guid: c0bc29f035e9b364ab4c816c06d2054e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5800,7 +5821,7 @@ PrefabInstance:
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
@@ -5810,17 +5831,17 @@ PrefabInstance:
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
@@ -5860,12 +5881,12 @@ PrefabInstance:
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 362
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -142.5
       objectReference: {fileID: 0}
     - target: {fileID: 7038228044458576643, guid: c0bc29f035e9b364ab4c816c06d2054e,
         type: 3}
@@ -5896,6 +5917,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UD Attack Speed Upgrade Card
       objectReference: {fileID: 0}
+    - target: {fileID: 3970747135268433360, guid: ac3da77abe4492b4da702d7d60688ae5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5919,7 +5945,7 @@ PrefabInstance:
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
@@ -5929,17 +5955,17 @@ PrefabInstance:
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
@@ -5979,12 +6005,12 @@ PrefabInstance:
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 886
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -142.5
       objectReference: {fileID: 0}
     - target: {fileID: 3970747135268433361, guid: ac3da77abe4492b4da702d7d60688ae5,
         type: 3}
