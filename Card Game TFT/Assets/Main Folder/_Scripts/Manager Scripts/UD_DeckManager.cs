@@ -21,21 +21,20 @@ public class UD_DeckManager : MonoBehaviour
 
     [SerializeField] GameObject UD_Grid_Layout;
 
-    public void AddUpgradeCard(PuzzleCard_SO type)
+    public void AddUpgradeCard(PuzzleCard_SO type)// This function adds specific card to UpgradeCard_Deck list by type
     {
         GameObject card = GetCardFromType(type);
         UpgradeCard_Deck.Add(card);
         Instantiate(card, UD_Grid_Layout.transform);
-        //UpgradeCard_Deck.Add(card);
         
     }
 
-    public void RemoveUpgradeCard(GameObject card)
+    public void RemoveUpgradeCard(GameObject card)// This function removes a card from UpgradeCard_Deck list
     {
         UpgradeCard_Deck.Remove(card);
     }
 
-    public GameObject GetCardFromType(PuzzleCard_SO card_type)
+    public GameObject GetCardFromType(PuzzleCard_SO card_type)// This function returns a card by given type 
     {
         foreach (GameObject item in AllUpgradeCardPrefabs)
         {

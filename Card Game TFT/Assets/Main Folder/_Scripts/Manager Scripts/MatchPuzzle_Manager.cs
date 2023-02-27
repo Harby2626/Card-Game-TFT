@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,13 +20,14 @@ public class MatchPuzzle_Manager : MonoBehaviour
     public int MoveAmount;
     GameObject cardSpawnPos; [SerializeField] GameObject FightButton;
     [SerializeField] GameObject UD_menu;
+    [SerializeField] GameObject PuzzleBackground;
 
     // This is a list for checking current match checking
     List<GameObject> ChosenCards = new List<GameObject>();
 
     public enum PuzzlePhase
     {
-        Start, Halt, Playing, Ended
+        Start, Halt, Showing ,Playing, Ended
     }
     public PuzzlePhase puzzlePhase;
 
@@ -41,7 +43,7 @@ public class MatchPuzzle_Manager : MonoBehaviour
         MoveAmount = 8;
     }
 
-    IEnumerator HandleMatch()
+    IEnumerator HandleMatch()// This enumerator waits for sec and handles if chosen cards matches or not
     {
         yield return new WaitForSeconds(1.5f);
         if(ChosenCards.Count == 2)
@@ -74,7 +76,26 @@ public class MatchPuzzle_Manager : MonoBehaviour
             }
         }
     }
-    IEnumerator StartFightingPhase()
+
+    IEnumerator ShowCardsFirst()// This is enumerator for showing all cards' front faces when puzzle phase begins
+    {
+        yield return new WaitForSeconds(1f);
+        foreach (GameObject item in CardsOnPuzzle)
+        {
+            item.GetComponent<PuzzleCard>().state = PuzzleCard.State.Opening;
+            item.GetComponent<Animator>().SetBool("chosen", true);
+        }
+        yield return new WaitForSeconds(1f);
+        foreach (GameObject item in CardsOnPuzzle)
+        {
+            CloseCard(item);
+        }
+        puzzlePhase = PuzzlePhase.Playing;
+        yield return null;
+    }
+
+
+    IEnumerator StartFightingPhase()// This enumerator called when puzzle phase ends and fighting phase begins
     {
         yield return new WaitForSeconds(2f);
         puzzlePhase = PuzzlePhase.Ended;
@@ -100,7 +121,8 @@ public class MatchPuzzle_Manager : MonoBehaviour
         }
     }
 
-    public void OpenUD_Menu()
+ 
+    public void OpenUD_Menu()// This function opens and closes UD Menu via animations
     {
 
         if (UD_menu.GetComponent<Animator>().GetBool("open") == false)
@@ -131,18 +153,28 @@ public class MatchPuzzle_Manager : MonoBehaviour
 
         switch (puzzlePhase)
         {
-            case PuzzlePhase.Start:
+            case PuzzlePhase.Start:// Spanws all cards on beginning of puzzle phase
                 SpawnCards();
                 puzzlePhase = PuzzlePhase.Halt;
                 break;
+            
             case PuzzlePhase.Halt:
 
                 break;
-            case PuzzlePhase.Playing:
-                //Playing phase (time runs out 15s (?))
-                break;
-            case PuzzlePhase.Ended:
 
+            case PuzzlePhase.Showing:// Shows all cards for once when puzzle playing begins
+                StartCoroutine(ShowCardsFirst());
+                puzzlePhase = PuzzlePhase.Playing;
+                break;
+            
+            case PuzzlePhase.Playing:
+                break;
+            
+            case PuzzlePhase.Ended:// When Puzzle Ends || Puzzle Object is disabled
+                if (PuzzleBackground.activeSelf)
+                {
+                    PuzzleBackground.SetActive(false);
+                }
                 break;
             default:
                 break;
