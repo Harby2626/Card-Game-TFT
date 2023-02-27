@@ -29,7 +29,7 @@ public class DealingCardManager : MonoBehaviour
                 counter++;
                 if (counter == puzzleMng.CardsOnPuzzle.Count)
                 {
-                    puzzleMng.puzzlePhase = MatchPuzzle_Manager.PuzzlePhase.Playing;
+                    puzzleMng.puzzlePhase = MatchPuzzle_Manager.PuzzlePhase.Showing;
                     puzzleMng.ActivateCardButtons();
                 }
                 timer = 0f;
