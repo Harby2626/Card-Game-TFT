@@ -10,7 +10,8 @@ public class Menu_Movement_Manager : MonoBehaviour
 
     public GameObject MenuGroup;
 
-    public float MenuLerpModifier, menu_release_lerp_modifier;
+    public float MenuLerpModifier, menu_release_lerp_modifier, MenuTarget;
+    bool targetChange = false;
 
     public enum SwipeTo
     {
@@ -28,6 +29,16 @@ public class Menu_Movement_Manager : MonoBehaviour
 
     private void Update()
     {
+        if (targetChange)
+        {
+            MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
+                                                                                    new Vector2(MenuTarget, 0), (MenuLerpModifier/10) * Time.deltaTime);
+            if (Mathf.Abs(MenuTarget - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
+            {
+                targetChange = false;
+            }
+        }
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -35,12 +46,10 @@ public class Menu_Movement_Manager : MonoBehaviour
             {
                 case TouchPhase.Began:
                     init_touch_pos = touch.position - origin;
-                    Debug.Log(init_touch_pos);
                     break;
                 
                 case TouchPhase.Moved:
                     Vector2 moved_touch_pos = (touch.position - origin);
-                    //Debug.Log(moved_touch_pos.x - init_touch_pos.x);
                     SwipeMenuGroup(touch.deltaPosition.x, MenuLerpModifier);
                     break;
                 
@@ -49,21 +58,24 @@ public class Menu_Movement_Manager : MonoBehaviour
                 
                 case TouchPhase.Ended:
                     float menu_x = MenuGroup.GetComponent<RectTransform>().anchoredPosition.x;
-                    if (menu_x > -1200f && menu_x < -800f)// Card Deck Menu Swipe
+                    if (!targetChange)
                     {
-                        swipeTo = SwipeTo.menu_1_2;
-                    }
-                    else if (menu_x > 800f && menu_x < 1200f)// Settings Menu Swipe
-                    {
-                        swipeTo = SwipeTo.menu_1_0;
-                    }
-                    else if (menu_x > -800 && menu_x < 0f)
-                    {
-                        swipeTo = SwipeTo.menu_2_1;
-                    }
-                    else if (menu_x > 0f && menu_x < 800f)
-                    {
-                        swipeTo = SwipeTo.menu_0_1;
+                        if (menu_x > -1550f && menu_x < -800f)// Card Deck Menu Swipe
+                        {
+                            swipeTo = SwipeTo.menu_1_2;
+                        }
+                        else if (menu_x > 800f && menu_x < 1550f)// Settings Menu Swipe
+                        {
+                            swipeTo = SwipeTo.menu_1_0;
+                        }
+                        else if (menu_x > -800 && menu_x < 0f)
+                        {
+                            swipeTo = SwipeTo.menu_2_1;
+                        }
+                        else if (menu_x > 0f && menu_x < 800f)
+                        {
+                            swipeTo = SwipeTo.menu_0_1;
+                        }
                     }
                     break;
                 
@@ -75,50 +87,54 @@ public class Menu_Movement_Manager : MonoBehaviour
             }
         }
 
-        switch (swipeTo)
+        if (!targetChange)
         {
-            case SwipeTo.menu_1_0:
-                float lerp_pos0 = 1550f;
-                MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
-                                                                                        new Vector2(lerp_pos0, 0), menu_release_lerp_modifier * Time.deltaTime);
-                if (Mathf.Abs(lerp_pos0 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
-                {
-                    swipeTo = SwipeTo.idle;
-                }
-                break;
-            
-            case SwipeTo.menu_1_2:
-                float lerp_pos1 = -1550f;
-                MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
-                                                                                        new Vector2(lerp_pos1, 0), menu_release_lerp_modifier * Time.deltaTime);
-                if (Mathf.Abs(lerp_pos1 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
-                {
-                    swipeTo = SwipeTo.idle;
-                }
-                break;
-            
-            case SwipeTo.menu_0_1:
-                float lerp_pos2 = 0;
-                MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
-                                                                                        new Vector2(lerp_pos2, 0), menu_release_lerp_modifier * Time.deltaTime);
-                if (Mathf.Abs(lerp_pos2 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
-                {
-                    swipeTo = SwipeTo.idle;
-                }
-                break;
-            
-            case SwipeTo.menu_2_1:
-                float lerp_pos3 = 0;
-                MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
-                                                                                        new Vector2(lerp_pos3, 0), menu_release_lerp_modifier * Time.deltaTime);
-                if (Mathf.Abs(lerp_pos3 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
-                {
-                    swipeTo = SwipeTo.idle;
-                }
-                break;
-            
-            default:
-                break;
+            switch (swipeTo)
+            {
+                case SwipeTo.menu_1_0:
+                    float lerp_pos0 = 1550f;
+                    MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
+                                                                                            new Vector2(lerp_pos0, 0), menu_release_lerp_modifier * Time.deltaTime);
+                    if (Mathf.Abs(lerp_pos0 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
+                    {
+                        swipeTo = SwipeTo.idle;
+                    }
+                    break;
+
+                case SwipeTo.menu_1_2:
+                    float lerp_pos1 = -1550f;
+                    MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
+                                                                                            new Vector2(lerp_pos1, 0), menu_release_lerp_modifier * Time.deltaTime);
+                    if (Mathf.Abs(lerp_pos1 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
+                    {
+                        swipeTo = SwipeTo.idle;
+                    }
+                    break;
+
+                case SwipeTo.menu_0_1:
+                    float lerp_pos2 = 0;
+                    MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
+                                                                                            new Vector2(lerp_pos2, 0), menu_release_lerp_modifier * Time.deltaTime);
+                    if (Mathf.Abs(lerp_pos2 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
+                    {
+                        swipeTo = SwipeTo.idle;
+                    }
+                    break;
+
+                case SwipeTo.menu_2_1:
+                    float lerp_pos3 = 0;
+                    MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
+                                                                                            new Vector2(lerp_pos3, 0), menu_release_lerp_modifier * Time.deltaTime);
+                    if (Mathf.Abs(lerp_pos3 - MenuGroup.GetComponent<RectTransform>().anchoredPosition.x) < 0.05f)
+                    {
+                        swipeTo = SwipeTo.idle;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
         }
     }
 
@@ -131,4 +147,24 @@ public class Menu_Movement_Manager : MonoBehaviour
         MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroupPos, LerpPos, lerp * Time.deltaTime);
     }
 
+    #region Main Menu Button Functions
+    public void MainFightButton()
+    {
+        MenuTarget = 0f;
+        targetChange = true;
+
+    }
+
+    public void MainCardDeckButton()
+    {
+        MenuTarget = 1550f;
+        targetChange = true;
+    }
+
+    public void MainSettingsButton()
+    {
+        MenuTarget = -1550f;
+        targetChange = true;
+    }
+    #endregion
 }
