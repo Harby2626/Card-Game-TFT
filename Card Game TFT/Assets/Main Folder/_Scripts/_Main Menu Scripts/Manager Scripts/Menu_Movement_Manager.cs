@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Menu_Movement_Manager : MonoBehaviour
 {
+    // Script Assignments
+    UI_Util_Manager ui_manager;
+
+
     Vector2 origin, init_touch_pos;
 
     public GameObject MenuGroup;
@@ -20,8 +24,22 @@ public class Menu_Movement_Manager : MonoBehaviour
 
     public SwipeTo swipeTo;
 
+    private void Awake()
+    {
+        LeanTween.reset();
+    }
+
     private void Start()
     {
+        ui_manager = GameObject.Find("UI Util Manager").GetComponent<UI_Util_Manager>();// Assign the Ui Utils Manager Object
+
+        ui_manager.Pop_UI_Element(GameObject.Find("Enemy Image"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutElastic);
+        ui_manager.Loop_UI_Element(GameObject.Find("Enemy Image"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutElastic);
+
+        ui_manager.Pop_UI_Element(GameObject.Find("XP Fill Bar"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutBack);
+        ui_manager.Pop_UI_Element(GameObject.Find("Level Text"), Vector3.one, .5f, .4f, LeanTweenType.easeInQuad);
+        ui_manager.Pop_UI_Element(GameObject.Find("Start Fight Button"), Vector3.one, .5f, .6f, LeanTweenType.easeOutBounce);
+
         swipeTo = SwipeTo.idle;
         origin = new Vector2((float)Screen.width / 2, (float)Screen.height / 2);
     }
