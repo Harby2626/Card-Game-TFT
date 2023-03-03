@@ -7,7 +7,6 @@ using UnityEngine;
 public class Menu_Movement_Manager : MonoBehaviour
 {
     // Script Assignments
-    UI_Util_Manager ui_manager;
 
 
     Vector2 origin, init_touch_pos;
@@ -31,14 +30,10 @@ public class Menu_Movement_Manager : MonoBehaviour
 
     private void Start()
     {
-        ui_manager = GameObject.Find("UI Util Manager").GetComponent<UI_Util_Manager>();// Assign the Ui Utils Manager Object
-
-        ui_manager.Pop_UI_Element(GameObject.Find("Enemy Image"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutElastic);
-        ui_manager.Loop_UI_Element(GameObject.Find("Enemy Image"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutElastic);
-
-        ui_manager.Pop_UI_Element(GameObject.Find("XP Fill Bar"), Vector3.one, 1.25f, .2f, LeanTweenType.easeOutBack);
-        ui_manager.Pop_UI_Element(GameObject.Find("Level Text"), Vector3.one, .5f, .4f, LeanTweenType.easeInQuad);
-        ui_manager.Pop_UI_Element(GameObject.Find("Start Fight Button"), Vector3.one, .5f, .6f, LeanTweenType.easeOutBounce);
+        LeanTween.scale(GameObject.Find("Enemy Image"), Vector3.one, .25f).setDelay(.2f).setEase(LeanTweenType.easeInCirc);
+        LeanTween.scale(GameObject.Find("Level Text"), Vector3.one, .25f).setDelay(.2f).setEase(LeanTweenType.easeInCirc);
+        LeanTween.scale(GameObject.Find("XP Fill Bar"), Vector3.one, .25f).setDelay(.4f).setEase(LeanTweenType.easeOutCirc);
+        LeanTween.scale(GameObject.Find("Start Fight Button"), Vector3.one, .25f).setDelay(.4f).setEase(LeanTweenType.easeInCubic);
 
         swipeTo = SwipeTo.idle;
         origin = new Vector2((float)Screen.width / 2, (float)Screen.height / 2);
@@ -47,7 +42,7 @@ public class Menu_Movement_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (targetChange)
+        if (targetChange)// if any page button is pressed Lerp to that position
         {
             MenuGroup.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(MenuGroup.GetComponent<RectTransform>().anchoredPosition,
                                                                                     new Vector2(MenuTarget, 0), (MenuLerpModifier/10) * Time.deltaTime);
@@ -156,7 +151,7 @@ public class Menu_Movement_Manager : MonoBehaviour
         }
     }
 
-    void SwipeMenuGroup(float moved_posX, float lerp)
+    void SwipeMenuGroup(float moved_posX, float lerp)// Swipe movement of menu group lerping
     {
         Vector2 MenuGroupPos = MenuGroup.GetComponent<RectTransform>().anchoredPosition;
         Vector2 LerpPos = new Vector2(MenuGroupPos.x + moved_posX * 2, MenuGroupPos.y);
@@ -183,6 +178,11 @@ public class Menu_Movement_Manager : MonoBehaviour
     {
         MenuTarget = -1550f;
         targetChange = true;
+    }
+
+    public void CloseCardInfoButton()
+    {
+        LeanTween.scale(GameObject.Find("Card Info"), Vector2.zero, .1f).setEase(LeanTweenType.easeInOutSine);
     }
     #endregion
 }
