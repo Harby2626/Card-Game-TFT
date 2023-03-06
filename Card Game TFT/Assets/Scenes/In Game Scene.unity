@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 538489827}
   - component: {fileID: 538489828}
   m_Layer: 0
-  m_Name: Main Deck Manager
+  m_Name: Hero Card Deck Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1350,14 +1350,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 538489826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8c0913f1354cc840aa3d5198327ddd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3edfef9eaf2f50145bb471bb136a914d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cards_database: {fileID: 11400000, guid: 9bab241335d88dd4883b868639fcced9, type: 2}
+  InGameDeckCont: {fileID: 1310168907}
   AllHeroCards:
   - {fileID: 2933798547453767053, guid: e177eb1d305d64940a6e4bad8f9d064c, type: 3}
   - {fileID: 2933798547453767053, guid: d672ece766cf9b944a89a6b3dd2d5858, type: 3}
   - {fileID: 2933798547453767053, guid: 863c1f9e410c59841ba022cf3d86c214, type: 3}
-  DeckContainer: {fileID: 1310168907}
 --- !u!1 &544381228
 GameObject:
   m_ObjectHideFlags: 0

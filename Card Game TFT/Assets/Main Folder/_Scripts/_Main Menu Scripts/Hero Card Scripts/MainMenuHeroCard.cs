@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuHeroCard : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, ISelectHandler ,IDeselectHandler
+public class MainMenuHeroCard : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
+    public string type_tag;
+
+    GameObject CurrentDeckHolder, CurrentInventoryHolder;
     DeselectClicks deselect;
 
     private void Start()
     {
+        type_tag = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text;
+
+        CurrentDeckHolder = GameObject.Find("Current Deck Holder");
+        CurrentInventoryHolder = GameObject.Find("Card Inventory Holder");
         deselect = GameObject.Find("Card Deck Menu").GetComponent<DeselectClicks>();
     }
 
@@ -56,15 +64,6 @@ public class MainMenuHeroCard : MonoBehaviour, IPointerDownHandler, IPointerClic
         //Debug.Log("PointerMove");
     }
 
-    public void OnSelect(BaseEventData eventData)
-    {
-        Debug.Log("SELECT");
-    }
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        Debug.Log("DESELECT");
-    }
 
     #region Hero Card Button Functions
     public void OpenCardInfoButton()
@@ -74,12 +73,22 @@ public class MainMenuHeroCard : MonoBehaviour, IPointerDownHandler, IPointerClic
 
     public void AddToDeckButton()
     {
-        // add to deck
+        MainDeckManager.instance.AddHeroCard_Deck(this.gameObject);
+        this.gameObject.transform.SetParent(CurrentDeckHolder.transform);
+
+
+        this.transform.GetChild(1).gameObject.SetActive(false);
+        this.transform.GetChild(2).gameObject.SetActive(false);
     }
 
     public void RemoveToDeckButton()
     {
-        // remove to deck
+        MainDeckManager.instance.RemoveHeroCard_Deck(this.gameObject);
+        this.gameObject.transform.SetParent(CurrentInventoryHolder.transform);
+
+
+        this.transform.GetChild(1).gameObject.SetActive(false);
+        this.transform.GetChild(3).gameObject.SetActive(false);
     }
     #endregion
 
