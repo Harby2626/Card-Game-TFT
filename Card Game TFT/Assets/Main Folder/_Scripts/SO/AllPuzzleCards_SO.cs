@@ -15,7 +15,7 @@ public class AllPuzzleCards_SO : ScriptableObject
         DeckCardTags.Add(tag);
     }
 
-    public void RemoveCardToList(string tag)
+    public void RemoveCardFromList(string tag)
     {
         DeckCardTags.Remove(tag);
     }

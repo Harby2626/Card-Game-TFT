@@ -9,13 +9,46 @@ public class HeroDeckManager : MonoBehaviour
     [SerializeField] GameObject InGameDeckCont;
     [SerializeField] List<GameObject> AllHeroCards = new List<GameObject>();
 
+    bool hero_cards_spawned = true;
+
     private void Start()
     {
-        SpawnHeroDeckCards();
+        //SpawnHeroDeckCards();
+    }
+
+
+    private void Update()
+    {
+        if (hero_cards_spawned)
+        {
+            SpawnHeroDeckCards();
+        }
     }
 
     public void SpawnHeroDeckCards()
     {
-        // GET GAMEOBJECTS FROM STRING LIST FROM SO'S;
+
+        foreach (string _tag in cards_database.DeckCardTags)
+        {
+            switch (_tag)
+            {
+                case "elf":
+                    Instantiate(AllHeroCards[0], InGameDeckCont.transform);
+                    break;
+
+                case "raider":
+                    Instantiate(AllHeroCards[1], InGameDeckCont.transform);
+                    break;
+
+                case "wizard":
+                    Instantiate(AllHeroCards[2], InGameDeckCont.transform);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        hero_cards_spawned = false;
+
     }
 }
