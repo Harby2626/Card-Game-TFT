@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenuHeroCard : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
+    [SerializeField] AllPuzzleCards_SO card_database;
+
     public string type_tag;
 
     GameObject CurrentDeckHolder, CurrentInventoryHolder;

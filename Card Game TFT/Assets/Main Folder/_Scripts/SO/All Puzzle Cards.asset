@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 5481986114514736859, guid: 9348d25e8d7294343904a799b6dd1103, type: 3}
   - {fileID: 4116925437301937189, guid: 8e02030d0a079a547bbd91015a03e7ce, type: 3}
   - {fileID: 226240530319162861, guid: 22a530a5f81c0b6488b92c51be19996c, type: 3}
-  DeckCardTags: []
+  DeckCardTags:
+  - elf
+  - raider
+  - wizard

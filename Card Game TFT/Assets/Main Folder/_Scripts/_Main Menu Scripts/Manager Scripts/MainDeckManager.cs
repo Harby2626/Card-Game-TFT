@@ -42,6 +42,11 @@ public class MainDeckManager : MonoBehaviour
             }
             instance.SpawnInventoryHeroCards();
         }
+
+        if (MainDeckCards.Count != 0)
+        {
+
+        }
     }
 
     public void SpawnInventoryHeroCards()

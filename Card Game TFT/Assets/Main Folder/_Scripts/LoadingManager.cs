@@ -27,7 +27,7 @@ public class LoadingManager : MonoBehaviour
         switch (fill_target)
         {
             case .2f:
-                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .2f, 2f * Time.deltaTime);
+                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .2f, 4f * Time.deltaTime);
                 if (Mathf.Abs(.2f - loading_fill_img.fillAmount) < 0.01f)
                 {
                     fill_target = .6f;
@@ -35,7 +35,7 @@ public class LoadingManager : MonoBehaviour
                 break;
 
             case .6f:
-                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .6f, 2.5f * Time.deltaTime);
+                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .6f, 4f * Time.deltaTime);
                 if (Mathf.Abs(.6f - loading_fill_img.fillAmount) < 0.01f)
                 {
                     fill_target = .75f;
@@ -43,7 +43,7 @@ public class LoadingManager : MonoBehaviour
                 break;
 
             case .75f:
-                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .75f, 2.75f * Time.deltaTime);
+                loading_fill_img.fillAmount = Mathf.Lerp(loading_fill_img.fillAmount, .75f, 4f * Time.deltaTime);
                 if (Mathf.Abs(.75f - loading_fill_img.fillAmount) < 0.01f)
                 {
                     fill_target = 1f;

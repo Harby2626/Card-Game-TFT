@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463b80742b0c1b146b2ec9aeed9f49cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card_database: {fileID: 11400000, guid: 9bab241335d88dd4883b868639fcced9, type: 2}
   type_tag: 
 --- !u!1 &493758654570363364
 GameObject:
