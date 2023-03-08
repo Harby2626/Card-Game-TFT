@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,12 +11,12 @@ public class MainDeckManager : MonoBehaviour
 
     public static MainDeckManager instance;
 
-
-    [SerializeField] List<GameObject> AllHeroCards = new List<GameObject>();
     [SerializeField] GameObject InventoryDeckContainer;
+    [SerializeField] TextMeshProUGUI cannot_fight_text;
 
-    List<GameObject> InventoryCards = new List<GameObject>();
+    [SerializeField] List<GameObject> InventoryCards = new List<GameObject>();
     [SerializeField] List<GameObject> MainDeckCards = new List<GameObject>();
+    [SerializeField] List<GameObject> AllHeroCards = new List<GameObject>();
 
     private void Awake()
     {
@@ -120,7 +121,14 @@ public class MainDeckManager : MonoBehaviour
             }
         }
 
-        SceneManager.LoadScene(1);
+        if (MainDeckCards.Count == 0)
+        {
+            Instantiate(cannot_fight_text, GameObject.Find("Menu Canvas").transform);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
     }
     #endregion
 }

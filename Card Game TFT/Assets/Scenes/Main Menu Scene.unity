@@ -1082,6 +1082,8 @@ MonoBehaviour:
   - {fileID: 493758654469919888, guid: 47131d5fa65e73743a8fb571e7bef4cf, type: 3}
   - {fileID: 493758654469919888, guid: b2d53de471529c84cb7c5e02d4b780b3, type: 3}
   InventoryDeckContainer: {fileID: 1584408047}
+  cannot_fight_text: {fileID: 3253240357669324390, guid: 66c6c16385d3e9a48a9cb43c0bb41f7c,
+    type: 3}
   MainDeckCards: []
 --- !u!1 &850524620
 GameObject:
