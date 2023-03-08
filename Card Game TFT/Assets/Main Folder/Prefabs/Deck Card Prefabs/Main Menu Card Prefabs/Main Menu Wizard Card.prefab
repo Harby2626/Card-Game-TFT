@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card_database: {fileID: 11400000, guid: 9bab241335d88dd4883b868639fcced9, type: 2}
-  type_tag: 
+  type_tag: wizard
 --- !u!1 &493758654570363364
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,14 +17,6 @@ public class PlacingPosition : MonoBehaviour
         currentCharacter = _character;
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "fighter")
-    //    {
-
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "fighter")
